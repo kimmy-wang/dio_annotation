@@ -1,0 +1,6 @@
+name: dio_annotation
+repository: https://github.com/kw214/dio_annotation
+
+packages:
+  - dio_annotation
+  - dio_runner
