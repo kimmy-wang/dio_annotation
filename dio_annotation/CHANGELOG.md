@@ -1,3 +1,7 @@
+## 0.0.1-alpha.4
+
+ - **FEAT**: add @Api.
+
 ## 0.0.1-alpha.3
 
  - **REFACTOR**: generator.dart.

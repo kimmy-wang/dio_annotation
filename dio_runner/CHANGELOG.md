@@ -1,3 +1,7 @@
+## 0.0.1-alpha.5
+
+ - **FEAT**: add @Api.
+
 ## 0.0.1-alpha.4
 
  - **FIX**: flutter pub get.
