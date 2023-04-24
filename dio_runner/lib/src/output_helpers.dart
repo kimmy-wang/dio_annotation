@@ -9,6 +9,7 @@ Stream<String> normalizeGeneratorOutput(Object? value) {
   } else if (value is Future) {
     return StreamCompleter.fromFuture(value.then(normalizeGeneratorOutput));
   } else if (value is String) {
+    // ignore_for_file: parameter_assignments
     value = [value];
   }
 

@@ -37,7 +37,6 @@ class DioGenerator extends Generator {
         buildStep,
       );
       await for (final value in normalizeGeneratorOutput(generatedValue)) {
-        assert(value.length == value.trim().length);
         values.add(value);
       }
     }
@@ -47,7 +46,10 @@ class DioGenerator extends Generator {
 
   /// generateForAnnotatedElement
   dynamic generateForAnnotatedElement(
-      Element element, ConstantReader annotation, BuildStep buildStep) {
+    Element element,
+    ConstantReader annotation,
+    BuildStep buildStep,
+  ) {
     if (element is! MethodElement) {
       final friendlyName = element.displayName;
       throw InvalidGenerationSourceError(
@@ -74,7 +76,8 @@ class DioGenerator extends Generator {
         parameters.where((parameter) => parameter.isRequired);
     if (requiredParameters.isEmpty) {
       throw InvalidGenerationSourceError(
-        "Method `$friendlyName` must contain a parameter of type 'SuccessConverter'",
+        'Method `$friendlyName` must contain a '
+            "parameter of type 'SuccessConverter'",
       );
     }
     final optionalParameters =
@@ -83,7 +86,8 @@ class DioGenerator extends Generator {
     final scParams = parameters.where(isSuccessConverter);
     if (scParams.isEmpty) {
       throw InvalidGenerationSourceError(
-        "Method `$friendlyName` must contain a parameter of type 'SuccessConverter'",
+        'Method `$friendlyName` must contain a '
+            "parameter of type 'SuccessConverter'",
       );
     }
     final mapParams = parameters.where(isParams);
