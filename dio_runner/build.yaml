@@ -1,0 +1,15 @@
+# Read about `build.yaml` at https://pub.dartlang.org/packages/build_config
+targets:
+  $default:
+    builders:
+      dio_runner|dio_runner:
+        enabled: true
+
+builders:
+  dio_runner:
+    target: ":dio_runner"
+    import: "package:dio_runner/dio_runner.dart"
+    builder_factories: ["dioGeneratorFactory"]
+    build_extensions: {".dart": [".dio.dart"]}
+    auto_apply: root_package
+    build_to: source

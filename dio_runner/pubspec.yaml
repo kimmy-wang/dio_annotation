@@ -6,7 +6,18 @@ version: 0.0.1-alpha.1
 environment:
   sdk: ">=2.18.0 <3.0.0"
 
+dependencies:
+  analyzer: '>=4.4.0 <6.0.0'
+  async: ^2.5.0
+  build: ^2.0.0
+  built_collection: ^5.0.0
+  code_builder: ^4.3.0
+  dart_style: ^2.0.0
+  dio_annotation: ^0.0.1-alpha.1
+  logging: ^1.0.0
+  source_gen: ^1.0.0
+
 dev_dependencies:
-  mocktail: ^0.3.0
+  dart_code_metrics: ^4.8.1
   test: ^1.19.2
   very_good_analysis: ^3.1.0
