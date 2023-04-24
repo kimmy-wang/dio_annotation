@@ -1,7 +1,7 @@
 name: dio_runner
 description: Dio Runner
 repository: https://github.com/kw214/dio_annotation/tree/main/dio_runner
-version: 0.0.1-alpha.2
+version: 0.0.1-alpha.3
 
 environment:
   sdk: ">=2.18.0 <3.0.0"
@@ -13,7 +13,7 @@ dependencies:
   built_collection: ^5.0.0
   code_builder: ^4.3.0
   dart_style: ^2.0.0
-  dio_annotation: ^0.0.1-alpha.2
+  dio_annotation: ^0.0.1-alpha.3
   logging: ^1.0.0
   source_gen: ^1.0.0
 

@@ -1,3 +1,7 @@
+## 0.0.1-alpha.3
+
+ - **REFACTOR**: generator.dart.
+
 ## 0.0.1-alpha.2
 
  - **FEAT**: function realization.
