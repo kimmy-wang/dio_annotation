@@ -9,7 +9,8 @@ class Repo {
   const Repo();
 }
 
-class Api {
+@Api()
+class ExampleApi {
   @Request(method: 'get', url: '/repositories', dio: '_dio')
   static Future<List<Repo>?> getRepositories({
     required Map<String, dynamic> params,

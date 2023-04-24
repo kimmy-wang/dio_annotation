@@ -159,14 +159,14 @@ packages:
       path: "../dio_annotation"
       relative: true
     source: path
-    version: "0.0.1-alpha.2"
+    version: "0.0.1-alpha.3"
   dio_runner:
     dependency: "direct dev"
     description:
       path: "../dio_runner"
       relative: true
     source: path
-    version: "0.0.1-alpha.2"
+    version: "0.0.1-alpha.4"
   file:
     dependency: transitive
     description:

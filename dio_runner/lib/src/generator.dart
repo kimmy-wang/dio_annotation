@@ -19,18 +19,22 @@ const String _dioVar = 'dio';
 
 /// DioGenerator
 class DioGenerator extends Generator {
-  /// typeChecker
-  final typeChecker = const TypeChecker.fromRuntime(Request);
+  /// apiTypeChecker
+  final apiTypeChecker = const TypeChecker.fromRuntime(Api);
+
+  /// requestTypeChecker
+  final requestTypeChecker = const TypeChecker.fromRuntime(Request);
 
   @override
   FutureOr<String?> generate(LibraryReader library, BuildStep buildStep) async {
     final elements = library.allElements
         .whereType<ClassElement>()
+        .where(apiTypeChecker.hasAnnotationOf)
         .expand((element) => element.methods);
     final values = <String>{};
 
     for (final annotatedElement
-        in library.annotatedWithElements(elements, typeChecker)) {
+        in library.annotatedWithElements(elements, requestTypeChecker)) {
       final generatedValue = generateForAnnotatedElement(
         annotatedElement.element,
         annotatedElement.annotation,
@@ -77,7 +81,7 @@ class DioGenerator extends Generator {
     if (requiredParameters.isEmpty) {
       throw InvalidGenerationSourceError(
         'Method `$friendlyName` must contain a '
-            "parameter of type 'SuccessConverter'",
+        "parameter of type 'SuccessConverter'",
       );
     }
     final optionalParameters =
@@ -87,7 +91,7 @@ class DioGenerator extends Generator {
     if (scParams.isEmpty) {
       throw InvalidGenerationSourceError(
         'Method `$friendlyName` must contain a '
-            "parameter of type 'SuccessConverter'",
+        "parameter of type 'SuccessConverter'",
       );
     }
     final mapParams = parameters.where(isParams);
