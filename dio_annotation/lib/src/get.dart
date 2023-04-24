@@ -1,7 +1,7 @@
 import 'package:dio_annotation/dio_annotation.dart';
 
 /// Get
-class Get<T> extends Request<T> {
+class Get extends Request {
   /// constructor
   const Get({
     required super.url,

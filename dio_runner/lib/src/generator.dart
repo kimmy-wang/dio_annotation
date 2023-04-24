@@ -8,17 +8,18 @@ import 'package:dart_style/dart_style.dart';
 import 'package:dio_annotation/dio_annotation.dart';
 import 'package:dio_runner/src/extensions.dart';
 import 'package:dio_runner/src/output_helpers.dart';
-import 'package:logging/logging.dart';
+// import 'package:logging/logging.dart';
 import 'package:source_gen/source_gen.dart';
 
 const String _methodVar = 'method';
 const String _urlVar = 'url';
 const String _dioVar = 'dio';
 
-final Logger _logger = Logger('Dio Generator');
+// final Logger _logger = Logger('Dio Generator');
 
 /// DioGenerator
 class DioGenerator extends Generator {
+  /// typeChecker
   final typeChecker = const TypeChecker.fromRuntime(Request);
 
   @override
@@ -44,6 +45,7 @@ class DioGenerator extends Generator {
     return values.join('\n\n');
   }
 
+  /// generateForAnnotatedElement
   dynamic generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
     if (element is! MethodElement) {
@@ -69,9 +71,23 @@ class DioGenerator extends Generator {
     final dio = annotation.peek(_dioVar)?.stringValue ?? '';
     final parameters = element.parameters;
     final requiredParameters =
-        element.parameters.where((element) => element.isRequired);
+        parameters.where((parameter) => parameter.isRequired);
+    if (requiredParameters.isEmpty) {
+      throw InvalidGenerationSourceError(
+        "Method `$friendlyName` must contain a parameter of type 'SuccessConverter'",
+      );
+    }
     final optionalParameters =
-        element.parameters.where((element) => element.isOptional);
+        parameters.where((parameter) => parameter.isOptional);
+
+    final scParams = parameters.where(isSuccessConverter);
+    if (scParams.isEmpty) {
+      throw InvalidGenerationSourceError(
+        "Method `$friendlyName` must contain a parameter of type 'SuccessConverter'",
+      );
+    }
+    final mapParams = parameters.where(isParams);
+    final fcParams = parameters.where(isFailureConverter);
 
     final methodBuilder = Method((builder) {
       builder
@@ -80,12 +96,12 @@ class DioGenerator extends Generator {
         ..modifier = MethodModifier.async
         ..body = Code(
           _buildDioRequestImplementationMethodBody(
-            method,
+            method.toLowerCase(),
             url,
             dio,
-            parameters.asMap()[0],
-            parameters.asMap()[1],
-            parameters.asMap()[2],
+            scParams.first,
+            mapParams.isNotEmpty ? mapParams.first : null,
+            fcParams.isNotEmpty ? fcParams.first : null,
           ),
         );
 
@@ -115,19 +131,36 @@ class DioGenerator extends Generator {
       }
     });
 
-    final String ignore =
+    const ignore =
         '// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps';
     final emitter = DartEmitter();
 
     return DartFormatter().format('$ignore\n${methodBuilder.accept(emitter)}');
   }
 
+  /// isSuccessConverter
+  bool isParams(ParameterElement parameter) {
+    return parameter.type.isDartCoreMap;
+  }
+
+  /// isSuccessConverter
+  bool isSuccessConverter(ParameterElement parameter) {
+    final type = parameter.type.toString();
+    return type.contains('Function') && !type.contains('void');
+  }
+
+  /// isFailureConverter
+  bool isFailureConverter(ParameterElement parameter) {
+    final type = parameter.type.toString();
+    return type.contains('Function') && type.contains('void');
+  }
+
   String _buildDioRequestImplementationMethodBody(
     String method,
     String url,
     String dio,
+    ParameterElement onSuccess,
     ParameterElement? params,
-    ParameterElement? onSuccess,
     ParameterElement? onError,
   ) {
     var extra = '';
@@ -146,9 +179,9 @@ class DioGenerator extends Generator {
         '$url',
         $extra
       );
-      return ${onSuccess == null ? 'res.data' : 'onSuccess == null ? res.data : ${onSuccess.name}(res.data)'};
+      return ${onSuccess.name}(res.data);
     } on Exception catch (error, stack) {
-      ${onError == null ? "print('error: \$error, stack: \$stack')" : "onError == null ? print('error: \$error, stack: \$stack') : ${onError.name}(error, stack)"};
+      ${onError == null ? "if (error is DioError) {throw RequestedException(error.error);} throw RequestedException(error.toString())" : "onError == null ? {if (error is DioError) throw RequestedException(error.error) else throw RequestedException(error.toString())} : ${onError.name}(error, stack)"};
     }
     """;
   }

@@ -7,9 +7,9 @@ part of 'example.dart';
 // **************************************************************************
 
 // ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
-Future<dynamic> _$getRepositories(
-  Map<String, dynamic> params, [
-  dynamic Function(dynamic)? onSuccess,
+Future<List<Repo>?> _$getRepositories(
+  Map<String, dynamic> params,
+  List<Repo>? Function(dynamic) onSuccess, [
   void Function(Exception, StackTrace)? onError,
 ]) async {
   try {
@@ -17,18 +17,23 @@ Future<dynamic> _$getRepositories(
       '/repositories',
       queryParameters: params,
     );
-    return onSuccess == null ? res.data : onSuccess(res.data);
+    return onSuccess(res.data);
   } on Exception catch (error, stack) {
     onError == null
-        ? print('error: $error, stack: $stack')
+        ? {
+            if (error is DioError)
+              throw RequestedException(error.error)
+            else
+              throw RequestedException(error.toString())
+          }
         : onError(error, stack);
   }
 }
 
 // ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
-Future<dynamic> _$getDevelopers([
+Future<dynamic> _$getDevelopers(
+  dynamic Function(dynamic) onSuccess, [
   Map<String, dynamic>? params,
-  dynamic Function(dynamic)? onSuccess,
   void Function(Exception, StackTrace)? onError,
 ]) async {
   try {
@@ -36,30 +41,38 @@ Future<dynamic> _$getDevelopers([
       '/developers',
       queryParameters: params,
     );
-    return onSuccess == null ? res.data : onSuccess(res.data);
+    return onSuccess(res.data);
   } on Exception catch (error, stack) {
     onError == null
-        ? print('error: $error, stack: $stack')
+        ? {
+            if (error is DioError)
+              throw RequestedException(error.error)
+            else
+              throw RequestedException(error.toString())
+          }
         : onError(error, stack);
   }
 }
 
 // ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
-Future<dynamic> _$getLanguages() async {
+Future<dynamic> _$getLanguages(dynamic Function(dynamic) onSuccess) async {
   try {
     final res = await _dio.get(
       '/languages',
     );
-    return res.data;
+    return onSuccess(res.data);
   } on Exception catch (error, stack) {
-    print('error: $error, stack: $stack');
+    if (error is DioError) {
+      throw RequestedException(error.error);
+    }
+    throw RequestedException(error.toString());
   }
 }
 
 // ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
 Future<dynamic> _$postRepository(
-  Map<String, dynamic> params, [
-  dynamic Function(dynamic)? onSuccess,
+  dynamic Function(dynamic) onSuccess, [
+  Map<String, dynamic>? params,
   void Function(Exception, StackTrace)? onError,
 ]) async {
   try {
@@ -67,18 +80,23 @@ Future<dynamic> _$postRepository(
       '/repositories',
       data: params,
     );
-    return onSuccess == null ? res.data : onSuccess(res.data);
+    return onSuccess(res.data);
   } on Exception catch (error, stack) {
     onError == null
-        ? print('error: $error, stack: $stack')
+        ? {
+            if (error is DioError)
+              throw RequestedException(error.error)
+            else
+              throw RequestedException(error.toString())
+          }
         : onError(error, stack);
   }
 }
 
 // ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
-Future<dynamic> _$postDeveloper([
+Future<dynamic> _$postDeveloper(
+  dynamic Function(dynamic) onSuccess, [
   Map<String, dynamic>? params,
-  dynamic Function(dynamic)? onSuccess,
   void Function(Exception, StackTrace)? onError,
 ]) async {
   try {
@@ -86,22 +104,30 @@ Future<dynamic> _$postDeveloper([
       '/developers',
       data: params,
     );
-    return onSuccess == null ? res.data : onSuccess(res.data);
+    return onSuccess(res.data);
   } on Exception catch (error, stack) {
     onError == null
-        ? print('error: $error, stack: $stack')
+        ? {
+            if (error is DioError)
+              throw RequestedException(error.error)
+            else
+              throw RequestedException(error.toString())
+          }
         : onError(error, stack);
   }
 }
 
 // ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
-Future<dynamic> _$postLanguage() async {
+Future<dynamic> _$postLanguage(dynamic Function(dynamic) onSuccess) async {
   try {
     final res = await _dio.post(
       '/languages',
     );
-    return res.data;
+    return onSuccess(res.data);
   } on Exception catch (error, stack) {
-    print('error: $error, stack: $stack');
+    if (error is DioError) {
+      throw RequestedException(error.error);
+    }
+    throw RequestedException(error.toString());
   }
 }

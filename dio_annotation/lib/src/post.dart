@@ -1,7 +1,7 @@
 import 'package:dio_annotation/dio_annotation.dart';
 
 /// Post
-class Post<T> extends Request<T> {
+class Post extends Request {
   /// constructor
   const Post({
     required super.url,

@@ -5,44 +5,52 @@ part 'example.dio.dart';
 
 final _dio = Dio();
 
+class Repo {
+  const Repo();
+}
+
 class Api {
-  @Request<dynamic>(method: 'get', url: '/repositories', dio: '_dio')
-  static Future<dynamic> getRepositories({
+  @Request(method: 'get', url: '/repositories', dio: '_dio')
+  static Future<List<Repo>?> getRepositories({
     required Map<String, dynamic> params,
-    SuccessConverter<dynamic>? onSuccess,
+    required SuccessConverter<List<Repo>?> onSuccess,
     FailureConverter? onError,
   }) =>
       _$getRepositories(params, onSuccess, onError);
 
-  @Request<dynamic>(method: 'get', url: '/developers', dio: '_dio')
+  @Request(method: 'get', url: '/developers', dio: '_dio')
   static Future<dynamic> getDevelopers({
+    required SuccessConverter<dynamic> onSuccess,
     Map<String, dynamic>? params,
-    SuccessConverter<dynamic>? onSuccess,
     FailureConverter? onError,
   }) =>
-      _$getDevelopers(params, onSuccess, onError);
+      _$getDevelopers(onSuccess, params, onError);
 
-  @Request<dynamic>(method: 'get', url: '/languages', dio: '_dio')
-  static Future<dynamic> getLanguages() =>
-      _$getLanguages();
+  @Request(method: 'get', url: '/languages', dio: '_dio')
+  static Future<dynamic> getLanguages({
+    required SuccessConverter<dynamic> onSuccess,
+  }) =>
+      _$getLanguages(onSuccess);
 
-  @Request<dynamic>(method: 'post', url: '/repositories', dio: '_dio')
+  @Request(method: 'post', url: '/repositories', dio: '_dio')
   static Future<dynamic> postRepository({
-    required Map<String, dynamic> params,
-    SuccessConverter<dynamic>? onSuccess,
-    FailureConverter? onError,
-  }) =>
-      _$postRepository(params, onSuccess, onError);
-
-  @Request<dynamic>(method: 'post', url: '/developers', dio: '_dio')
-  static Future<dynamic> postDeveloper({
+    required SuccessConverter<dynamic> onSuccess,
     Map<String, dynamic>? params,
-    SuccessConverter<dynamic>? onSuccess,
     FailureConverter? onError,
   }) =>
-      _$postDeveloper(params, onSuccess, onError);
+      _$postRepository(onSuccess, params, onError);
 
-  @Request<dynamic>(method: 'post', url: '/languages', dio: '_dio')
-  static Future<dynamic> postLanguage() =>
-      _$postLanguage();
+  @Request(method: 'post', url: '/developers', dio: '_dio')
+  static Future<dynamic> postDeveloper({
+    required SuccessConverter<dynamic> onSuccess,
+    Map<String, dynamic>? params,
+    FailureConverter? onError,
+  }) =>
+      _$postDeveloper(onSuccess, params, onError);
+
+  @Request(method: 'post', url: '/languages', dio: '_dio')
+  static Future<dynamic> postLanguage({
+    required SuccessConverter<dynamic> onSuccess,
+  }) =>
+      _$postLanguage(onSuccess);
 }

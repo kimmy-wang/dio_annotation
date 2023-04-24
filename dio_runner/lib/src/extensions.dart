@@ -3,6 +3,7 @@ import 'package:source_gen/source_gen.dart';
 
 /// LibraryReaderExt
 extension LibraryReaderExt on LibraryReader {
+  /// annotatedWithElements
   Iterable<AnnotatedElement> annotatedWithElements(
     Iterable<Element> elements,
     TypeChecker checker, {

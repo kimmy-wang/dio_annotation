@@ -1,5 +1,5 @@
 /// Request
-class Request<T> {
+class Request {
   /// constructor
   const Request({
     required this.method,
