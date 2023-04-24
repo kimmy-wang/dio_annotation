@@ -149,10 +149,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio_annotation
-      sha256: "62ab2a55af45ee2c27e00a0468144a7ff11aac5504b01d783a8aa659c5df8cb0"
+      sha256: "624493fa01bae327b3e7549480365617435dc3cf313eb0b4ab78ec1966d86d47"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.1-alpha.2"
+    version: "0.0.1-alpha.3"
   file:
     dependency: transitive
     description:
