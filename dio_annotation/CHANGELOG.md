@@ -1,3 +1,10 @@
+## 0.0.1-alpha.6
+
+ - **REFACTOR**: generator.dart.
+ - **FEAT**: 优化.
+ - **FEAT**: add @Api.
+ - **FEAT**: function realization.
+
 ## 0.0.1-alpha.4
 
  - **FEAT**: add @Api.

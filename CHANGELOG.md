@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-05-06
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`dio_annotation` - `v0.0.1-alpha.6`](#dio_annotation---v001-alpha6)
+ - [`dio_runner` - `v0.0.1-alpha.6`](#dio_runner---v001-alpha6)
+
+---
+
+#### `dio_annotation` - `v0.0.1-alpha.6`
+
+ - **REFACTOR**: generator.dart.
+ - **FEAT**: 优化.
+ - **FEAT**: add @Api.
+ - **FEAT**: function realization.
+
+#### `dio_runner` - `v0.0.1-alpha.6`
+
+ - **FIX**: dart pub get.
+ - **FEAT**: 优化.
+
+
 ## 2023-04-24
 
 ### Changes

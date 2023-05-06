@@ -1,3 +1,8 @@
+## 0.0.1-alpha.6
+
+ - **FIX**: dart pub get.
+ - **FEAT**: 优化.
+
 ## 0.0.1-alpha.5
 
  - **FEAT**: add @Api.
