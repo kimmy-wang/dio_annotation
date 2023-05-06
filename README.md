@@ -2,9 +2,9 @@
 
 [![License: MIT][license_badge]][license_link]
 
-`melos version --prerelease --preid=alpha`
+1. `melos version --prerelease --preid=alpha --no-dependent-versions`
 
-`melos publish --no-dry-run`
+2. `melos publish --no-dry-run`
 
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT

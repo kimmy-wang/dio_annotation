@@ -27,21 +27,26 @@ class DioGenerator extends Generator {
 
   @override
   FutureOr<String?> generate(LibraryReader library, BuildStep buildStep) async {
-    final elements = library.allElements
-        .whereType<ClassElement>()
-        .where(apiTypeChecker.hasAnnotationOf)
-        .expand((element) => element.methods);
+    final classElements = library.classes.where(apiTypeChecker.hasAnnotationOf);
+    // .expand((element) => element.methods);
     final values = <String>{};
 
-    for (final annotatedElement
-        in library.annotatedWithElements(elements, requestTypeChecker)) {
-      final generatedValue = generateForAnnotatedElement(
-        annotatedElement.element,
-        annotatedElement.annotation,
-        buildStep,
-      );
-      await for (final value in normalizeGeneratorOutput(generatedValue)) {
-        values.add(value);
+    for (final classElement in classElements) {
+      final methodElements = classElement.methods;
+      final classAnnotation = apiTypeChecker.firstAnnotationOf(classElement);
+      if (classAnnotation != null) {
+        for (final annotatedElement in library.annotatedWithElements(
+            methodElements, requestTypeChecker)) {
+          final generatedValue = generateForAnnotatedElement(
+            annotatedElement.element,
+            annotatedElement.annotation,
+            ConstantReader(classAnnotation),
+            buildStep,
+          );
+          await for (final value in normalizeGeneratorOutput(generatedValue)) {
+            values.add(value);
+          }
+        }
       }
     }
 
@@ -51,7 +56,8 @@ class DioGenerator extends Generator {
   /// generateForAnnotatedElement
   dynamic generateForAnnotatedElement(
     Element element,
-    ConstantReader annotation,
+    ConstantReader methodAnnotation,
+    ConstantReader classAnnotation,
     BuildStep buildStep,
   ) {
     if (element is! MethodElement) {
@@ -62,19 +68,25 @@ class DioGenerator extends Generator {
       );
     }
 
-    return _buildDioRequestImplementationMethod(element, annotation);
+    return _buildDioRequestImplementationMethod(
+      element,
+      methodAnnotation,
+      classAnnotation,
+    );
   }
 
   String _buildDioRequestImplementationMethod(
     MethodElement element,
-    ConstantReader annotation,
+    ConstantReader methodAnnotation,
+    ConstantReader classAnnotation,
   ) {
     final friendlyName = element.name;
     final returnType = element.returnType;
     final name = '_\$$friendlyName';
-    final method = annotation.peek(_methodVar)?.stringValue ?? '';
-    final url = annotation.peek(_urlVar)?.stringValue ?? '';
-    final dio = annotation.peek(_dioVar)?.stringValue ?? '';
+    final method = methodAnnotation.peek(_methodVar)?.stringValue ?? '';
+    final url = methodAnnotation.peek(_urlVar)?.stringValue ?? '';
+    final cDio = classAnnotation.peek(_dioVar)?.stringValue ?? '';
+    final dio = methodAnnotation.peek(_dioVar)?.stringValue ?? cDio;
     final parameters = element.parameters;
     final requiredParameters =
         parameters.where((parameter) => parameter.isRequired);
@@ -148,7 +160,7 @@ class DioGenerator extends Generator {
 
   /// isSuccessConverter
   bool isParams(ParameterElement parameter) {
-    return parameter.type.isDartCoreMap;
+    return !isSuccessConverter(parameter) && !isFailureConverter(parameter);
   }
 
   /// isSuccessConverter
@@ -189,7 +201,7 @@ class DioGenerator extends Generator {
       );
       return ${onSuccess.name}(res.data);
     } on Exception catch (error, stack) {
-      ${onError == null ? "if (error is DioError) {throw RequestedException(error.error);} throw RequestedException(error.toString())" : "onError == null ? {if (error is DioError) throw RequestedException(error.error) else throw RequestedException(error.toString())} : ${onError.name}(error, stack)"};
+      ${onError == null ? "if (error is DioError) {throw RequestedException(error.error);} throw RequestedException(error.toString())" : "${onError.name}(error, stack)"};
     }
     """;
   }

@@ -1,6 +1,10 @@
-
 /// Api
 class Api {
   /// constructor
-  const Api();
+  const Api({
+    this.dio = 'dio',
+  });
+
+  /// dio instance
+  final String dio;
 }
