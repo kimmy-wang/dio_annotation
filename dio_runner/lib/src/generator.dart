@@ -36,7 +36,9 @@ class DioGenerator extends Generator {
       final classAnnotation = apiTypeChecker.firstAnnotationOf(classElement);
       if (classAnnotation != null) {
         for (final annotatedElement in library.annotatedWithElements(
-            methodElements, requestTypeChecker)) {
+          methodElements,
+          requestTypeChecker,
+        )) {
           final generatedValue = generateForAnnotatedElement(
             annotatedElement.element,
             annotatedElement.annotation,
