@@ -1,3 +1,7 @@
+## 0.0.1+2
+
+- **FIX**: downgrade analyzer to 6.2.0.
+
 ## 0.0.1+1
 
 - **DOCS**: update github url.
