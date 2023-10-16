@@ -1,10 +1,10 @@
 name: dio_annotation
 description: Dio Annotation
 repository: https://github.com/kw214/dio_annotation/tree/main/dio_annotation
-version: 0.0.1-alpha.6
+version: 0.0.1
 
 environment:
-  sdk: ">=2.18.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dev_dependencies:
-  very_good_analysis: ^3.1.0
+  very_good_analysis: ^5.1.0

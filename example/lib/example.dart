@@ -10,7 +10,7 @@ class Repo {
   const Repo();
 }
 
-class RequestedException {
+class RequestedException implements Exception {
   RequestedException(this.msg);
   final dynamic msg;
 }

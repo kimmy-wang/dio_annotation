@@ -203,7 +203,7 @@ class DioGenerator extends Generator {
       );
       return ${onSuccess.name}(res.data);
     } on Exception catch (error, stack) {
-      ${onError == null ? "if (error is DioError) {throw RequestedException(error.error);} throw RequestedException(error.toString())" : "${onError.name}(error, stack)"};
+      ${onError == null ? "if (error is DioException) {throw RequestedException(error.error);} throw RequestedException(error.toString())" : "${onError.name}(error, stack)"};
     }
     """;
   }

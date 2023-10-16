@@ -1,3 +1,7 @@
+## 0.0.1
+
+- **CHORE**: update deps.
+
 ## 0.0.1-alpha.6
 
  - **REFACTOR**: generator.dart.

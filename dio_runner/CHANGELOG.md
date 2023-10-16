@@ -1,3 +1,7 @@
+## 0.0.1
+
+- **FEAT**: upgrade dio to v5.
+
 ## 0.0.1-alpha.6
 
  - **FIX**: dart pub get.

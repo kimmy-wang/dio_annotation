@@ -18,7 +18,7 @@ Future<List<Repo>?> _$getRepositories(
     );
     return onSuccess(res.data);
   } on Exception catch (error, stack) {
-    if (error is DioError) {
+    if (error is DioException) {
       throw RequestedException(error.error);
     }
     throw RequestedException(error.toString());
@@ -37,7 +37,7 @@ Future<List<Repo>?> _$uploadFile(
     );
     return onSuccess(res.data);
   } on Exception catch (error, stack) {
-    if (error is DioError) {
+    if (error is DioException) {
       throw RequestedException(error.error);
     }
     throw RequestedException(error.toString());
@@ -56,7 +56,7 @@ Future<dynamic> _$getDevelopers(
     );
     return onSuccess(res.data);
   } on Exception catch (error, stack) {
-    if (error is DioError) {
+    if (error is DioException) {
       throw RequestedException(error.error);
     }
     throw RequestedException(error.toString());
@@ -71,7 +71,7 @@ Future<dynamic> _$getLanguages(dynamic Function(dynamic) onSuccess) async {
     );
     return onSuccess(res.data);
   } on Exception catch (error, stack) {
-    if (error is DioError) {
+    if (error is DioException) {
       throw RequestedException(error.error);
     }
     throw RequestedException(error.toString());
@@ -90,7 +90,7 @@ Future<dynamic> _$postRepository(
     );
     return onSuccess(res.data);
   } on Exception catch (error, stack) {
-    if (error is DioError) {
+    if (error is DioException) {
       throw RequestedException(error.error);
     }
     throw RequestedException(error.toString());
@@ -122,7 +122,7 @@ Future<dynamic> _$postLanguage(dynamic Function(dynamic) onSuccess) async {
     );
     return onSuccess(res.data);
   } on Exception catch (error, stack) {
-    if (error is DioError) {
+    if (error is DioException) {
       throw RequestedException(error.error);
     }
     throw RequestedException(error.toString());
