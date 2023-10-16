@@ -1,3 +1,9 @@
+## 0.0.1+3
+
+- **FIX**: downgrade `analyzer` to ^5.13.0.
+- **FIX**: downgrade `dart_style` to ^2.3.2.
+- **FIX**: downgrade `test` to ^1.24.3.
+
 ## 0.0.1+2
 
 - **FIX**: downgrade analyzer to 6.2.0.
