@@ -1,6 +1,6 @@
 name: example
 description: Example
-repository: https://github.com/kw214/dio_annotation/tree/main/example
+repository: https://github.com/kimmy-wang/dio_annotation/tree/main/example
 publish_to: none
 
 environment:

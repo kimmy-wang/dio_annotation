@@ -1,7 +1,11 @@
 name: dio_annotation
 description: Dio Annotation
-repository: https://github.com/kw214/dio_annotation/tree/main/dio_annotation
-version: 0.0.1
+repository: https://github.com/kimmy-wang/dio_annotation/tree/main/dio_annotation
+topics:
+  - dio
+  - annotation
+  - dio-annotation
+version: 0.0.1+1
 
 environment:
   sdk: ">=3.0.0 <4.0.0"

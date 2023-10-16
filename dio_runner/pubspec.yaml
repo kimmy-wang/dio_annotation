@@ -1,7 +1,11 @@
 name: dio_runner
 description: Dio Runner
-repository: https://github.com/kw214/dio_annotation/tree/main/dio_runner
-version: 0.0.1
+repository: https://github.com/kimmy-wang/dio_annotation/tree/main/dio_runner
+topics:
+  - dio
+  - runner
+  - dio-runner
+version: 0.0.1+1
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
