@@ -109,7 +109,7 @@ class DioGenerator extends Generator {
       );
     }
     final mapParams = parameters.where(isParams);
-    final fcParams = parameters.where(isFailureConverter);
+    // final fcParams = parameters.where(isFailureConverter);
 
     final methodBuilder = Method((builder) {
       builder
@@ -123,7 +123,7 @@ class DioGenerator extends Generator {
             dio,
             scParams.first,
             mapParams.isNotEmpty ? mapParams.first : null,
-            fcParams.isNotEmpty ? fcParams.first : null,
+            // fcParams.isNotEmpty ? fcParams.first : null,
           ),
         );
 
@@ -183,7 +183,6 @@ class DioGenerator extends Generator {
     String dio,
     ParameterElement onSuccess,
     ParameterElement? params,
-    ParameterElement? onError,
   ) {
     var extra = '';
     if (params != null) {
@@ -196,15 +195,11 @@ class DioGenerator extends Generator {
     }
 
     return """
-    try {
-      final res = await $dio.$method(
-        '$url',
-        $extra
-      );
-      return ${onSuccess.name}(res.data);
-    } on Exception catch (error, stack) {
-      ${onError == null ? "if (error is DioException) {throw RequestedException(error.error);} throw RequestedException(error.toString())" : "${onError.name}(error, stack)"};
-    }
+    final res = await $dio.$method<dynamic>(
+      '$url',
+      $extra
+    );
+    return ${onSuccess.name}(res.data);
     """;
   }
 }

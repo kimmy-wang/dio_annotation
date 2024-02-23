@@ -1,5 +1,5 @@
 name: dio_annotation
-repository: https://github.com/kw214/dio_annotation
+repository: https://github.com/kimmy-wang/dio_annotation
 
 packages:
   - dio_annotation

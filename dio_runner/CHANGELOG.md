@@ -1,3 +1,7 @@
+## 0.0.1+4
+
+- **REFACTOR**: remove `try catch`.
+
 ## 0.0.1+3
 
 - **FIX**: downgrade `analyzer` to ^5.13.0.

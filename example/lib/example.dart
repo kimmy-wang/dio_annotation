@@ -54,10 +54,9 @@ class ExampleApi {
   @Request(method: 'post', url: '/developers', dio: '_dio')
   static Future<dynamic> postDeveloper({
     required SuccessConverter<dynamic> onSuccess,
-    required FailureConverter onError,
     Map<String, dynamic>? params,
   }) =>
-      _$postDeveloper(onSuccess, onError, params);
+      _$postDeveloper(onSuccess, params);
 
   @Request(method: 'post', url: '/languages', dio: '_dio')
   static Future<dynamic> postLanguage({
