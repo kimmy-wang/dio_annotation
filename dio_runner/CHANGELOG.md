@@ -1,3 +1,7 @@
+## 0.0.2
+
+- Bump the min sdk to 3.4.0.
+
 ## 0.0.1+4
 
 - **REFACTOR**: remove `try catch`.

@@ -1,6 +1,0 @@
-# melos_managed_dependency_overrides: dio_annotation,dio_runner
-dependency_overrides:
-  dio_annotation:
-    path: ../dio_annotation
-  dio_runner:
-    path: ../dio_runner

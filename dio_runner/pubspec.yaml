@@ -5,20 +5,20 @@ topics:
   - dio
   - runner
   - dio-runner
-version: 0.0.1+4
+version: 0.0.2
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
-  analyzer: ^5.13.0
+  analyzer: ^6.5.0
   async: ^2.11.0
   build: ^2.4.1
   built_collection: ^5.1.1
   code_builder: ^4.7.0
-  dart_style: ^2.3.2
+  dart_style: ^2.3.6
   dio: ^5.0.0
-  dio_annotation: ^0.0.1
+  dio_annotation: ^0.0.2
   logging: ^1.2.0
   source_gen: ^1.4.0
 

@@ -6,7 +6,6 @@ part of 'example.dart';
 // DioGenerator
 // **************************************************************************
 
-// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
 Future<List<Repo>?> _$getRepositories(
   Map<String, dynamic> params,
   List<Repo>? Function(dynamic) onSuccess,
@@ -18,7 +17,6 @@ Future<List<Repo>?> _$getRepositories(
   return onSuccess(res.data);
 }
 
-// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
 Future<List<Repo>?> _$uploadFile(
   FormData params,
   List<Repo>? Function(dynamic) onSuccess,
@@ -30,7 +28,6 @@ Future<List<Repo>?> _$uploadFile(
   return onSuccess(res.data);
 }
 
-// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
 Future<dynamic> _$getDevelopers(
   dynamic Function(dynamic) onSuccess, [
   Map<String, dynamic>? params,
@@ -42,7 +39,6 @@ Future<dynamic> _$getDevelopers(
   return onSuccess(res.data);
 }
 
-// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
 Future<dynamic> _$getLanguages(dynamic Function(dynamic) onSuccess) async {
   final res = await _dio.get<dynamic>(
     '/languages',
@@ -50,7 +46,6 @@ Future<dynamic> _$getLanguages(dynamic Function(dynamic) onSuccess) async {
   return onSuccess(res.data);
 }
 
-// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
 Future<dynamic> _$postRepository(
   dynamic Function(dynamic) onSuccess, [
   Map<String, dynamic>? params,
@@ -62,7 +57,6 @@ Future<dynamic> _$postRepository(
   return onSuccess(res.data);
 }
 
-// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
 Future<dynamic> _$postDeveloper(
   dynamic Function(dynamic) onSuccess, [
   Map<String, dynamic>? params,
@@ -74,7 +68,6 @@ Future<dynamic> _$postDeveloper(
   return onSuccess(res.data);
 }
 
-// ignore_for_file: always_put_control_body_on_new_line, always_specify_types, prefer_const_declarations, unnecessary_brace_in_string_interps
 Future<dynamic> _$postLanguage(dynamic Function(dynamic) onSuccess) async {
   final res = await _dio.post<dynamic>(
     '/languages',
