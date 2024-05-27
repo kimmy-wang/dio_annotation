@@ -5,13 +5,13 @@ topics:
   - dio
   - runner
   - dio-runner
-version: 0.0.2
+version: 0.0.2+1
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
 
 dependencies:
-  analyzer: ^6.5.0
+  analyzer: ^6.4.1
   async: ^2.11.0
   build: ^2.4.1
   built_collection: ^5.1.1

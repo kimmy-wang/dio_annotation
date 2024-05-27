@@ -1,3 +1,7 @@
+## 0.0.2+1
+
+- Downgrade meta to ^1.12.0.
+
 ## 0.0.2
 
 - Bump the min sdk to 3.4.0.
